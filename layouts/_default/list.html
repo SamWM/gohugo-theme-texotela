@@ -1,0 +1,18 @@
+{{ define "main" }}
+<section>
+    <article>
+        {{- .Content -}}
+    </article>
+    {{ if .Pages }}
+    <nav>
+        <ul>
+            {{ range .Pages }}
+                <li>
+                    <a href="{{.Permalink}}">{{.Date.Format "2006-01-02"}} | {{.Title}}</a>
+                </li>
+            {{ end }}
+        </ul>
+    </nav>
+    {{ end }}
+</section>
+{{ end }}
