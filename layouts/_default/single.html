@@ -1,0 +1,40 @@
+{{ define "main" }}
+<article>
+    {{- .Content -}}
+</article>
+
+{{/*
+  Use Hugo's native Table of contents feature. You must set `toc: true` in your parameters for this to show.
+  https://gohugo.io/content-management/toc/
+*/}}
+
+{{- if .Params.toc -}}
+<aside>
+    <p>What's in this {{ .Type }}</p>
+    {{ .TableOfContents }}
+</aside>
+{{- end -}}
+
+{{/*
+  Use Hugo's native related content feature to pull in content that may have similar parameters, like tags. etc.
+  https://gohugo.io/content-management/related/
+*/}}
+
+{{ $related := .Site.RegularPages.Related . | first 15 }}
+
+{{ with $related }}
+<aside>
+    <p>See Also</p>
+    <ul>
+	   {{ range . }}
+	     <li>
+          <a href="{{ .RelPermalink }}">
+            {{- .Title -}}
+          </a>
+        </li>
+	    {{ end }}
+    </ul>
+</aside>
+{{ end }}
+
+{{ end }}
