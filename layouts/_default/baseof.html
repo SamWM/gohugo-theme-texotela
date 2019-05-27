@@ -12,7 +12,9 @@
         {{- block "main" . }}{{- end }}
         </main>
         <footer id="main-footer" class="p-4">
+            {{- block "footer-pre" . }}{{- end }}
             {{- partial "footer.html" . -}}
+            {{- block "footer-post" . }}{{- end }}
         </footer>
     </body>
 </html>
