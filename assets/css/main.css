@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind utilities;
+html {
+    @apply text-gray-900 subpixel-antialiased leading-snug;
+}
+h1 {
+    @apply text-2xl;
+}
+h2 {
+    @apply text-xl;
+}
+h3 {
+    @apply text-lg;
+}
+a {
+    @apply text-blue-600 underline;
+}
+a:hover {
+    @apply text-blue-900;
+}
+#page-header {
+    @apply bg-gray-900 text-gray-100;
+}
+#page-header h1 {
+    @apply text-6xl text-center;
+}
+#page-header .site-name a {
+    @apply text-gray-100 no-underline font-mono text-2xl;
+}
+#main-menu {
+    @apply bg-gray-800 text-gray-100;
+}
+#main-menu a {
+    @apply text-white no-underline;
+}
+#main-menu ul {
+    @apply text-right;
+}
+#main-menu ul li {
+    @apply inline-block;
+}
+#content p {
+    @apply mb-3;
+}
+#content h2 {
+    @apply leading-relaxed;
+}
+#content h3 {
+    @apply leading-loose;
+}

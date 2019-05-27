@@ -1,13 +1,18 @@
 {{ if .Site.Menus.main }}
-<nav>
-    <ul>
-        {{ range .Site.Menus.main }}
-        <li>
-            <a href="{{ .URL }}" title="{{ .Name }} page">
+{{ $currentPage := . }}
+<ul class="p-2">
+    {{ range .Site.Menus.main }}
+        {{ if eq $currentPage.URL .URL }}
+            <li class="p-4 pt-2 pb-2 font-medium rounded border bg-gray-900 border-gray-900">
                 {{ .Name }}
-            </a>
-        </li>
+            </li>
+        {{ else }}
+            <li class="p-4 pt-2 pb-2 font-hairline rounded border bg-gray-700 border-gray-900 hover:bg-gray-900">
+                <a href="{{ .URL }}" title="{{ .Name }} page">
+                    {{ .Name }}
+                </a>
+            </li>
         {{ end }}
-    </ul>
-</nav>
+    {{ end }}
+</ul>
 {{ end }}

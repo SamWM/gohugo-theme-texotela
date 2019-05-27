@@ -2,11 +2,17 @@
 <html>
     {{- partial "head.html" . -}}
     <body>
-        {{- partial "header.html" . -}}
-        {{- partial "menu.html" . -}}
-        <main id="content">
+        <header id="page-header">
+            {{- partial "header.html" . -}}
+            <nav id="main-menu">
+                {{- partial "menu.html" . -}}
+            </nav>
+        </header>
+        <main id="content" class="p-4">
         {{- block "main" . }}{{- end }}
         </main>
-        {{- partial "footer.html" . -}}
+        <footer id="main-footer" class="p-4">
+            {{- partial "footer.html" . -}}
+        </footer>
     </body>
 </html>

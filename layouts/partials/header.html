@@ -1,4 +1,8 @@
-<a href="{{ .Site.BaseURL }}">
-    {{ .Site.Title }}
-</a>
-<h1>{{ .Title | default .Site.Title }}</h1>
+<div class="p-4">
+    <div class="site-name">
+        <a href="{{ .Site.BaseURL }}">
+            {{ .Site.Title }}
+        </a>
+    </div>
+    <h1>{{ .Title | default .Site.Title }}</h1>
+</div>
