@@ -1,7 +1,14 @@
 {{ define "main" }}
-<article>
-    {{- .Content -}}
-</article>
+<section class="md:flex">
+  <article>
+      {{- .Content -}}
+      <footer class="mt-4 text-sm flex text-gray-600">
+        <span>Published: {{ .PublishDate.Format "02 January 2006 15:04 MST"}}</span>
+        {{ if ne .Lastmod .PublishDate }}
+        <span class="ml-4">Updated: {{ .Lastmod.Format "02 January 2006 15:04 MST"}}</span>
+        {{ end }}
+      </footer>
+  </article>
 
 {{/*
   Use Hugo's native Table of contents feature. You must set `toc: true` in your parameters for this to show.
@@ -9,8 +16,8 @@
 */}}
 
 {{- if .Params.toc -}}
-<aside>
-    <p>What's in this {{ .Type }}</p>
+<aside class="ml-2 md:w-2/5 border rounded bg-gray-100">
+    <h4 class="font-semibold mb-2 p-2 bg-gray-200">What's in this {{ .Type }}</h4>
     {{ .TableOfContents }}
 </aside>
 {{- end -}}
@@ -23,18 +30,21 @@
 {{ $related := .Site.RegularPages.Related . | first 15 }}
 
 {{ with $related }}
-<aside>
-    <p>See Also</p>
-    <ul>
+<aside class="ml-2 md:w-2/5 border rounded bg-gray-100">
+    <h4 class="font-semibold mb-2 p-2 bg-gray-200">See Also</h4>
+    <ul class="mt-2 p-2">
 	   {{ range . }}
 	     <li>
           <a href="{{ .RelPermalink }}">
             {{- .Title -}}
           </a>
+          <span class="text-sm">
+            {{ .Date.Format "02 Jan 2006 15:04 MST"}}
+          </span>
         </li>
 	    {{ end }}
     </ul>
 </aside>
 {{ end }}
-
+</section>
 {{ end }}
