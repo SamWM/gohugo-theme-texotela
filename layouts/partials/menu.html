@@ -1,15 +1,26 @@
 {{ if .Site.Menus.main }}
 {{ $currentPage := . }}
 <ul class="p-2">
+    {{ if not .IsHome }}
+    <li class="pt-2 pb-2 mr-2 font-hairline">
+        <a href="{{ .Site.BaseURL }}">
+            <i class="fas fa-home" title="Home"></i>
+        </a>
+    </li>
+    {{ end }}
     {{ range .Site.Menus.main }}
         {{ if eq $currentPage.URL .URL }}
             <li class="p-4 pt-2 pb-2 font-medium rounded border bg-gray-900 border-gray-900">
+                {{ .Pre }}
                 {{ .Name }}
+                {{ .Post }}
             </li>
         {{ else }}
             <li class="p-4 pt-2 pb-2 font-hairline rounded border bg-gray-700 border-gray-900 hover:bg-gray-900">
                 <a href="{{ .URL }}" title="{{ .Name }} page">
+                    {{ .Pre }}
                     {{ .Name }}
+                    {{ .Post }}
                 </a>
             </li>
         {{ end }}
