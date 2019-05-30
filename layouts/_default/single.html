@@ -1,21 +1,4 @@
 {{ define "main" }}
-<section class="md:flex">
-  <article>
-      {{- .Content -}}
-  </article>
-
-{{/*
-  Use Hugo's native Table of contents feature. You must set `toc: true` in your parameters for this to show.
-  https://gohugo.io/content-management/toc/
-*/}}
-
-{{- if .Params.toc -}}
-<aside class="md:ml-2 md:w-2/5 border rounded bg-gray-100">
-    <h4 class="font-semibold mb-2 p-2 bg-gray-200">What's in this {{ .Type }}</h4>
-    {{ .TableOfContents }}
-</aside>
-{{- end -}}
-
 {{/*
   Use Hugo's native related content feature to pull in content that may have similar parameters, like tags. etc.
   https://gohugo.io/content-management/related/
@@ -23,31 +6,23 @@
 
 {{ $related := .Site.RegularPages.Related . | first 15 }}
 
-{{ with $related }}
-<aside class="md:ml-2 md:w-2/5 border rounded bg-gray-100">
-    <h4 class="font-semibold mb-2 p-2 bg-gray-200">See Also</h4>
-    <ul class="mt-2 p-2">
-	   {{ range . }}
-	     <li>
-          <a href="{{ .RelPermalink }}">
-            {{- .Title -}}
-          </a>
-          <span class="text-sm">
-            {{ .Date.Format "02 Jan 2006 15:04 MST"}}
-          </span>
-        </li>
-	    {{ end }}
-    </ul>
-</aside>
-{{ end }}
+<section class="md:flex">
+  <article class="w-full {{ if $related }}md:w-4/6 lg:w-9/12{{ end }}">
+      {{- .Content -}}
+  </article>
+  {{ with $related }}
+    <aside class="md:ml-2 w-full md:w-2/6 lg:w-3/12 border rounded bg-gray-100">
+        <h4 class="font-semibold mb-2 p-2 bg-gray-200">See Also</h4>
+        <ul class="mt-2 p-2">
+        {{ range . }}
+          {{- partial "page-list-item.html" . -}}
+        {{ end }}
+        </ul>
+    </aside>
+  {{ end }}
 </section>
 {{ end }}
 
 {{ define "footer-pre" }}
-<section class="text-sm flex text-gray-600">
-    <span>Published: {{ .PublishDate.Format "02 January 2006 15:04 MST"}}</span>
-    {{ if ne .Lastmod .PublishDate }}
-    <span class="ml-4">Updated: {{ .Lastmod.Format "02 January 2006 15:04 MST"}}</span>
-    {{ end }}
-</section>
+{{- partial "section-dates.html" . -}}
 {{ end }}

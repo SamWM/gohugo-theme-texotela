@@ -1,18 +1,23 @@
 {{ define "main" }}
-<section>
-    <article>
+<section class="md:flex">
+    <article class="w-full {{ if .Pages }}md:w-4/6 lg:w-9/12{{ end }}">
         {{- .Content -}}
     </article>
     {{ if .Pages }}
-    <nav>
-        <ul>
-            {{ range .Pages }}
-                <li>
-                    <a href="{{.Permalink}}">{{.Date.Format "2006-01-02"}} | {{.Title}}</a>
-                </li>
-            {{ end }}
-        </ul>
-    </nav>
+    <aside class="md:ml-2 w-full md:w-2/6 lg:w-3/12 border rounded bg-gray-100">
+        <h4 class="font-semibold mb-2 p-2 bg-gray-200">See Also</h4>
+        <nav>
+            <ul class="mt-2 p-2">
+                {{ range .Pages }}
+                {{- partial "page-list-item.html" . -}}
+                {{ end }}
+            </ul>
+        </nav>
+    </aside>
     {{ end }}
 </section>
+{{ end }}
+
+{{ define "footer-pre" }}
+{{- partial "section-dates.html" . -}}
 {{ end }}
