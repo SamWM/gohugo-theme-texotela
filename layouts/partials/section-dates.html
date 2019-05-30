@@ -1,0 +1,12 @@
+<section class="text-sm flex text-gray-600">
+    <span>
+        <i class="fas fa-calendar-day"></i>
+        Published: {{ .PublishDate.Format "02 January 2006 15:04 MST"}}
+    </span>
+    {{ if ne .Lastmod .PublishDate }}
+    <span class="ml-4">
+        <i class="fas fa-calendar-day"></i>
+        Updated: {{ .Lastmod.Format "02 January 2006 15:04 MST"}}
+    </span>
+    {{ end }}
+</section>
