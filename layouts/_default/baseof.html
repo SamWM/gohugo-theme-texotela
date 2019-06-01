@@ -8,6 +8,13 @@
                 {{- partial "menu.html" . -}}
             </nav>
         </header>
+        {{ if not .IsHome }}
+            <nav class="p-2 bg-gray-400 text-sm">
+                <ul class="flex" aria-label="Breadcrumb">
+                    {{- partial "breadcrumb-trail" (dict "CurrentPage" true "Page" .) -}}
+                </ul>
+            </nav>
+        {{ end }}
         <main id="content" class="p-4">
         {{- block "main" . }}{{- end }}
         </main>

@@ -1,0 +1,19 @@
+{{ if .Page.Parent }}
+    {{ if .Page.Parent.IsHome }}
+    <li class="pl-2">
+        <a href="{{ .Page.Site.BaseURL }}" class="no-underline text-blue-900">
+            <i class="fas fa-home" title="Home"></i>        
+        </a>
+    </li>
+    {{ else }}
+        {{- partial "breadcrumb-trail" (dict "CurrentPage" false "Page" .Page.Parent) -}}
+    {{ end }}
+    <li aria-hidden="true" class="pl-1"><i class="fas fa-angle-double-right"></i></li>
+    {{ if .CurrentPage }}
+        <li class="pl-1">{{ .Page.Title }}</li>
+    {{ else }}
+    <li class="pl-1">
+        <a href="{{ .Page.Permalink }}" class="text-blue-900">{{ .Page.Title }}</a>
+    </li>
+    {{ end }}
+{{ end }}

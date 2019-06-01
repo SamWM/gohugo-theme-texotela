@@ -26,7 +26,7 @@
     {{/* Range through the first $n_posts items of the section */}}
     {{ range (first $n_posts $section) }}
     <article class="border rounded overflow-hidden shadow-lg relative mb-6 md:flex-1 md:mt-0 md:ml-4">
-      <h3 class="pl-1 pr-1 bg-gray-200">{{ .Title }}</h3>
+      <h3 class="pl-1 pr-1 bg-blue-800 text-gray-200">{{ .Title }}</h3>
       <div class="p-3 mb-4">
         {{ .Summary }}
       </div>
@@ -38,20 +38,24 @@
 
   {{ if ge $section_count (add $n_posts 1) }}
   <section>
-    <h2>More</h2>
-    {{/* Now, range through the next four after the initial $n_posts items. Nest the requirements, "after" then "first" on the outside */}}
-    {{ range (first 4 (after $n_posts $section))  }}
-    <h3>
-      <a href="{{ .Permalink }}">
-        {{ .Title }}
-      </a>
-    </h3>
-    {{ end }}
-
-    {{/* As above, Use $section_name to get the section title, and URL. Use "with" to only show it if it exists */}}
+    <article class="border rounded overflow-hidden shadow-lg relative mb-6 md:flex-1">
     {{ with .Site.GetPage "section" $section_name }}
-    <a href="{{ .Permalink }}">All {{ .Title }}</a>
+      <h3 class="pl-1 pr-1 bg-gray-200">More {{ .Title }}</h3>
+    {{ end}}
+    <nav>
+        <ul class="mt-2 p-2">
+            {{ range (first 4 (after $n_posts $section)) }}
+            {{- partial "page-list-item.html" . -}}
+            {{ end }}
+        </ul>
+    </nav>
+
+    {{ with .Site.GetPage "section" $section_name }}
+    <footer class="text-sm font-light bg-gray-200 p-2">
+      <a href="{{ .Permalink }}">All {{ .Title }}</a>
+    </footer>
     {{ end }}
+    </article>
   </section>
   {{ end }}
 
