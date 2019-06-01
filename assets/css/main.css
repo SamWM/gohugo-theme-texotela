@@ -22,8 +22,15 @@ a:hover {
     @apply bg-gray-900 text-gray-100;
 }
 #page-header h1 {
-    @apply text-6xl text-center;
+    @apply text-3xl text-center;
 }
+
+@screen lg {
+    #page-header h1 {
+        @apply text-5xl text-center;
+    }
+}
+
 #page-header .site-name a {
     @apply text-gray-100 no-underline font-mono text-2xl;
 }
