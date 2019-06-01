@@ -49,8 +49,11 @@ a:hover {
 #content p {
     @apply mb-3;
 }
-#content pre {
+#content pre:not('croma') {
     @apply p-2 mb-4 bg-gray-100 border border-gray-300 rounded overflow-x-scroll;
+}
+#content div.highlight {
+    @apply mb-4;
 }
 #content h2 {
     @apply leading-relaxed;
