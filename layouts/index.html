@@ -26,7 +26,7 @@
     {{/* Range through the first $n_posts items of the section */}}
     {{ range (first $n_posts $section) }}
     <article class="border rounded overflow-hidden shadow-lg relative mb-6 md:flex-1 md:mt-0 md:ml-4">
-      <h3 class="pl-1 pr-1 bg-blue-800 text-gray-200">{{ .Title }}</h3>
+      <h3 class="pl-1 pr-1 bg-blue-800 text-gray-200 text-base">{{ .Title }}</h3>
       <div class="p-3 mb-4">
         {{ .Summary }}
       </div>
@@ -40,7 +40,7 @@
   <section>
     <article class="border rounded overflow-hidden shadow-lg relative mb-6 md:flex-1">
     {{ with .Site.GetPage "section" $section_name }}
-      <h3 class="pl-1 pr-1 bg-gray-200">More {{ .Title }}</h3>
+      <h3 class="pl-1 pr-1 bg-gray-200 text-base">More {{ .Title }}</h3>
     {{ end}}
     <nav>
         <ul class="mt-2 p-2">
